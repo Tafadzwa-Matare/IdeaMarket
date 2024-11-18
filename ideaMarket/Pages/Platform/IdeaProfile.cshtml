@@ -1,0 +1,436 @@
+﻿@page
+@model ideaMarket.Pages.Platform.IdeaProfileModel
+@{
+    ViewData["Title"] = "IdeaProfile";
+}
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            $("a.demo-1").simplePopup();
+            $("#newIdea-btn").simplePopup({ type: "html", htmlSelector: "#CreateIdeaPopup" });
+        });
+    </script>
+    <script>
+        function InvestNow() {
+            alert("Kindly Add in Investor role in your Profile and Re-Login")
+        }
+    </script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+        if ('@TempData["message"]' == "InvestSuccess") {
+            console.log("true");
+            Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'Investment Successful',
+                showConfirmButton: false,
+                timer: 1500
+            })
+
+        }
+        else if ('@TempData["message"]' == "AdjustInvestors") {
+            console.log("true");
+            Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'Updated Succesfully',
+                showConfirmButton: false,
+                timer: 1500
+            })
+
+        }
+       else {
+            console.log("fail");
+
+       }
+    });
+    </script>
+}
+
+<!-- Start breadcumb Area -->
+<div class="page-area-ideas">
+    <div class="breadcumb-overlay"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="breadcrumb text-center">
+                    <div class="section-headline white-headline">
+                        <h3>IdeaProfile</h3>
+                    </div>
+                    <ul class="breadcrumb-bg">
+                        <li class="home-bread">Home</li>
+                        <li>Idea Profile</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End breadcumb Area -->
+
+<div class="payment-history-area bg-color fix area-padding-2">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="section-headline text-center">
+
+                    @*<h3 style="color: #E6922E;">@Model.Idea.IdeaName</h3>*@
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Idea Image -->
+        <div class="row ">
+            <div class="contact-inner">
+                <div class="col-md-1">
+
+                </div>
+                <!-- Start contact icon column -->
+                <div class="col-md-10 idea-overview-box">
+                    <div class="row">
+                        <div>
+                            <div class="col-md-7 col-sm-6 col-xs-12">
+                                <div class="feature-content">
+                                    <div class="feature-images">
+                                        <img src="../IdeaPictures/@Model.Idea.IdeaPicture" alt="">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-5 col-sm-6 col-xs-12">
+                                <div class="">
+                                    <h3>Reserve Your Place In @Model.Idea.IdeaName Today !!</h3>
+
+                                    <div class="row">
+                                        <div class="col-md-7">
+                                            <h5 style="color: #E6922E;">Sector:</h5>
+                                        </div>
+
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-7">
+                                            Sector:
+                                        </div>
+                                        <div class="col-md-5">
+                                            @Model.Idea.IdeaSector
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-7">
+                                            Category:
+                                        </div>
+                                        <div class="col-md-5">
+                                            @Model.Idea.IdeaCriteria
+                                        </div>
+                                    </div><br>
+                                    <div class="row">
+                                        <div class="col-md-7">
+                                            <h5 style="color: #E6922E;">Finacial Details:</h5>
+                                        </div>
+
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-7">
+                                            Funding Target(Min):
+                                        </div>
+                                        <div class="col-md-5">
+                                            @Model.Idea.MinimumCapital
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-7">
+                                            Funding Target(Max):
+                                        </div>
+                                        <div class="col-md-5">
+                                            @Model.Idea.MaximumCapital
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-7">
+                                            Funding Raised:
+                                        </div>
+                                        <div class="col-md-5">
+                                            XXXX
+                                        </div>
+                                    </div>
+                                    @if (SignInManager.IsSignedIn(User) && User.IsInRole("Investor"))
+                                    {
+                                        <a class="feature-btn" id="newIdea-btn">Invest now</a>
+                                    }
+                                    else if (SignInManager.IsSignedIn(User) && !User.IsInRole("Investor"))
+                                    {
+                                        <a class="feature-btn" onclick="InvestNow()">Invest now</a>
+
+                                    }
+                                    else
+                                    {
+                                        <a class="feature-btn" asp-page="/Administration/Login">Invest now</a>
+                                    }
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-md-1">
+
+                </div>
+
+            </div>
+        </div><br>
+
+
+        <!-- Idea Overview -->
+        <div class="row">
+            <div class="contact-inner">
+                <div class="col-md-1">
+
+                </div>
+                <!-- Start contact icon column -->
+                <div class="col-md-10">
+                    <div class="contact-icon text-center">
+                        <div class="single-icon">
+                            <i class="flaticon-032-report"></i>
+
+                            <h4>Idea Overview</h4>
+                            <p class="text-sm-center">
+                                @Model.Idea.IdeaSummary
+                            </p>
+
+
+
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="col-md-1">
+
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Idea Plan -->
+        <div class="row">
+            <div class="contact-inner">
+                <div class="col-md-1">
+
+                </div>
+                <!-- Start contact icon column -->
+                <div class="col-md-10">
+                    <div class="contact-icon text-center">
+                        <div class="single-icon">
+                            <i class="flaticon-003-approve"></i>
+                            <p>
+                                <h4>Idea Plan</h4>
+                                (Please Find Attached, A complete Doucment Of The Plan)<br>
+                                <a href="~/IdeaPlans/@Model.Idea.IdeaPlan"><span><u>Click To Get Idea Plan</u></span></a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-1">
+
+                </div>
+
+            </div>
+        </div>
+
+
+
+
+
+        <!-- Idea Contact Details -->
+        <div class="row">
+            <div class="contact-inner">
+                <div class="col-md-1">
+
+                </div>
+                <!-- Start contact icon column -->
+                <div class="col-md-10">
+                    <div class="contact-icon text-center">
+                        <div class="single-icon">
+                            <i class="flaticon-024-megaphone"></i>
+                            <p>
+                                <h4>Idea Owner/Business Contact Details</h4>
+                                Idea-Owner: @Model.Idea.IdeaOwner<br>
+                                <span>  Company Address:  @Model.Idea.CompanyAddress</span><br>
+                                <span>  Email: @Model.Idea.CompanyEmail</span><br>
+                                <span>  Mobile Number: @Model.Idea.MobileNumber</span>
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-md-1">
+
+                </div>
+
+            </div>
+        </div>
+
+
+
+
+        @if (Model.Idea.IdeaOwner == Model.myUser.UserName)
+        {
+            <!-- Investors-->
+            <div class="row">
+                <div class="contact-inner">
+                    <div class="col-md-1">
+
+                    </div>
+                    <!-- Start contact icon column -->
+                    <div class="col-md-10">
+                        <div class="contact-icon text-center">
+                            <div class="single-icon">
+                                <i class="flaticon-042-wallet"></i>
+                                <p>
+                                    <h4>Current Investors</h4>
+
+
+
+
+                                    @*@foreach (var item in Model.myIdeas.Where(m => m.IdeaId == Model.Idea.IdeaId))
+                                    {
+
+                                    }*@
+
+                                </p>
+
+
+                                <form method="post">
+
+
+
+
+
+
+                                    <div class="deposite-content">
+                                        <div class="diposite-box">
+                                          
+                                            <div class="deposite-table">
+                                                <table>
+                                                    <tbody>
+                                                        <tr>
+                                                            <th>Investor Name</th>
+                                                            <th>Investor Surname</th>
+                                                            <th>Amount</th>
+                                                            <th>Commited To Investment?</th>
+                                                        </tr>
+                                                        @for (var i = 0; i < Model.IdeaInvestments.Count(); i++)
+                                                        {
+                                                            <tr>
+
+                                                                <td>
+                                                                    <a asp-route-userId="@Model.IdeaInvestments[i].InvestorID" asp-page="/Platform/UserPublicProfile">
+                                                                        <label asp-for="@Model.IdeaInvestments[i].InvestorName">
+                                                                            @Model.IdeaInvestments[i].InvestorName
+                                                                        </label>
+                                                                    </a>
+
+                                                                </td>
+                                                                <td>
+
+                                                                    <b>
+                                                                        <input type="hidden" asp-for="@Model.IdeaInvestments[i].InvestimentID">
+                                                                        <input type="hidden" asp-for="@Model.IdeaInvestments[i].InvestorID">
+                                                                        <input type="hidden" asp-for="@Model.IdeaInvestments[i].InvestorName">
+                                                                        <input type="hidden" asp-for="@Model.IdeaInvestments[i].InvestorSurname">
+                                                                        <input type="hidden" asp-for="@Model.IdeaInvestments[i].InvestorEmail">
+                                                                        <input type="hidden" asp-for="@Model.IdeaInvestments[i].IdeaID">
+                                                                        <input type="hidden" asp-for="@Model.IdeaInvestments[i].InvestmentAmount">
+                                                                        <input type="hidden" asp-for="@Model.IdeaInvestments[i].DateDue">
+
+                                                                        <a asp-route-userId="@Model.IdeaInvestments[i].InvestorID" asp-page="/Platform/UserPublicProfile">
+                                                                            <label asp-for="@Model.IdeaInvestments[i].InvestorSurname">
+                                                                                @Model.IdeaInvestments[i].InvestorSurname
+                                                                            </label>
+                                                                        </a>
+
+
+
+                                                                    </b>
+
+                                                                </td>
+                                                                <td>
+                                                                    <b>
+                                                                        <label asp-for="@Model.IdeaInvestments[i].InvestmentAmount">
+                                                                            @Model.IdeaInvestments[i].InvestmentAmount
+                                                                        </label>
+                                                                    </b>
+                                                                </td>
+                                                                <td>
+                                                                    <select asp-for="@Model.IdeaInvestments[i].CommitedToInvestment" onChange="changecat(this.value);" style="width: 150px" class="form-control">
+                                                                        <option value="" disabled selected>@Model.IdeaInvestments[i].CommitedToInvestment</option>
+                                                                        <option value="YES">YES</option>
+                                                                        <option value="NO">NO</option>
+
+                                                                    </select>
+
+                                                                </td>
+                                                            </tr>
+                                                        }
+
+
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+
+                                    </div>                                                                                                 
+
+                                    <button asp-route-IdeaId="@Model.Idea.IdeaId" asp-page-handler="AdjustInvestments" class="btn btn-success ml-auto " type="submit" title="Send">Adjust</button>
+                                </form>
+
+
+
+
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-md-1">
+
+                    </div>
+
+                </div>
+            </div>
+        }
+
+
+
+        <div id="CreateIdeaPopup" style="height:400px">
+            <div>
+                <h4 style="color: orange">Invest In @Model.Idea.IdeaName</h4><br />
+                <form method="post">
+                    <div class="form-group">
+                        <label asp-for="Investment.InvestmentAmount">Enter Investment Amount</label>
+                        <input type="number" class="form-control" asp-for="Investment.InvestmentAmount" placeholder="$US">
+                        <small id="emailHelp" class="form-text text-muted">You will agree with the Idea Owner On the Payment Method</small>
+                    </div> <br />
+                    <div class="form-group">
+                        <label asp-for="Investment.DateDue">I will Pay Before:</label>
+                        <input type="date" class="form-control" asp-for="Investment.DateDue" placeholder="Date">
+                        <small id="emailHelp" class="form-text text-muted">You will Pay Before This Date</small>
+                    </div>
+                    <input type="hidden" asp-for="Investment.InvestorName" value="@Model.thisUser.FirstName" />
+                    <input type="hidden" asp-for="Investment.InvestorSurname" value="@Model.thisUser.Surname" />
+                    <input type="hidden" asp-for="Investment.InvestorEmail" value="@Model.thisUser.Email" />
+                    <input type="hidden" asp-for="Investment.InvestorID" value="@Model.thisUser.Id" />
+                    <input type="hidden" asp-for="Investment.DateInvested" value="@DateTime.Now.ToString("yyyy-MM-dd")" />
+
+                    <button asp-route-IdeaId="@Model.Idea.IdeaId" type="submit" class="btn btn-primary">Submit</button>
+                </form>
+
+
+
+            </div>
+
+        </div>
+
+    </div>
+</div>

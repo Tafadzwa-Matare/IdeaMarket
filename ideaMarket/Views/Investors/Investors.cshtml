@@ -1,0 +1,127 @@
+﻿@model IEnumerable<ideaMarket.ViewModels.InvestorViewModel>
+@{
+    ViewData["Title"] = "InvestorsView";
+    Layout = "_Layout";
+}
+
+@section Scripts{
+    <script>
+        var items = $('.single-member');
+        var numItems = items.length;
+        var perPage = 8;
+
+        items.slice(perPage).hide();
+
+        $('#pagination-container').pagination({
+            items: numItems,
+            itemsOnPage: perPage,
+            prevText: "<",
+            nextText: ">",
+            onPageClick: function (pageNumber) {
+                var showFrom = perPage * (pageNumber - 1);
+                var showTo = showFrom + perPage;
+                items.hide().slice(showFrom, showTo).show();
+            }
+        })
+    </script>
+}
+
+<div class="page-area-investors">
+    <div class="breadcumb-overlay"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="breadcrumb text-center">
+                    <div class="section-headline white-headline">
+                        <h3>Investors </h3>
+                    </div>
+                    <ul class="breadcrumb-bg">
+                        <li class="home-bread">Home</li>
+                        <li>Our Investors</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End breadcumb Area -->
+<!-- Team area start -->
+<div class="team-page-area page-padding-2">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="section-headline text-center">
+                    <h3>Our Top Investors</h3>
+                    <p>Help Idea Owners to define their new business Ideas and then create professional Solutions.</p>
+                </div>
+            </div>
+        </div>
+
+
+        @*<div class="row filter-section">
+
+                <div class="col-md-12 col-sm-12 col-xs-12">
+
+                    <div class="col-md-3 col-sm-3 col-xs-12">
+                        <label for="sectors">Search</label>
+                        <form  method="get" class="form-inline">
+                            <div class="form-group blog-search-option">
+
+                                <input type="text" name="SearchString" style="width:175px;" id="search" placeholder="Type Investor Name..">
+                                <button class="button" value="search" type="submit">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+
+
+                </div>
+            </div>*@
+
+        <div class="row">
+            <div class="team-member text-center">
+                <!-- Single team member -->
+
+                @foreach (var item in Model)
+                {
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <div class="single-member">
+                            <div class="team-img">
+                                <a asp-route-userId="@item.Id" asp-page="/Platform/UserPublicProfile">
+
+                                    @if (item.ProfilePicture == null)
+                                    {
+                                        <img src="../ProfilePictures/userdefault.png" alt="">
+                                    }
+                                    else
+                                    {
+                                        <img src="../ProfilePictures/@item.ProfilePicture" alt="">
+                                    }
+
+                                </a>
+                            </div>
+                            <div class="team-content">
+                                <h5> <a asp-route-userId="@item.Id" asp-page="/Platform/UserPublicProfile">@item.FirstName @item.Surname</a></h5>
+                                <p>@Html.DisplayFor(modelItem => item.Username)</p>
+                                <ul class="team-hover">
+
+                                    <li><a href="mailto:@item.Email"><i class="fa fa-envelope"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+
+
+            </div>
+        </div>
+
+
+        <div id="pagination-container">
+
+        </div>
+    </div>
+</div>
+

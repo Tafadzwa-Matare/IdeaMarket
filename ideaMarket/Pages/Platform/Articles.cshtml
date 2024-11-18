@@ -1,0 +1,139 @@
+﻿@page
+@model ideaMarket.Pages.Platform.ArticlesModel
+@{
+    ViewData["Title"] = "Articles";
+}
+
+
+@section Scripts{
+    <script src="~/js/vendor/sweetalert2/dist/sweetalert2.min.js"></script>
+    <script>
+        var items = $('.single-blog');
+        var numItems = items.length;
+        var perPage = 3;
+
+        items.slice(perPage).hide();
+
+        $('#pagination-container').pagination({
+            items: numItems,
+            itemsOnPage: perPage,
+            prevText: "<",
+            nextText: ">",
+            onPageClick: function (pageNumber) {
+                var showFrom = perPage * (pageNumber - 1);
+                var showTo = showFrom + perPage;
+                items.hide().slice(showFrom, showTo).show();
+            }
+        })
+    </script>
+
+}
+
+
+<div class="page-area-articles">
+    <div class="breadcumb-overlay"></div>
+    <div class="container">
+
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="breadcrumb text-center">
+                    <div class="section-headline white-headline">
+                        <h3>Articles</h3>
+                    </div>
+                    <ul class="breadcrumb-bg">
+                        <li class="home-bread">Home</li>
+                        <li>Articles</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End breadcumb Area -->
+<!--Blog Area Start-->
+<div class="blog-area fix page-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="section-headline text-center">
+                    <h3>Idea-Market Articles</h3>
+                    <p style="color: #E6922E">Get informed, Get inspired and Get motivated !!!</p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="blog-sidebar-right">
+                <div class="col-md-2 col-sm-8 col-xs-12">
+
+                </div>
+                <div class="col-md-8 col-sm-8 col-xs-12">
+                    <div class="row">
+                        <div class="blog-left-content">
+                            <!-- Start single blog -->
+
+                            @foreach (var item in Model.Articles)
+                            {
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <div class="single-blog ">
+                                        <div class="blog-image">
+                                            @if (item.ArticlePicture == null)
+                                            {
+                                            <a class="image-scale" href="#">                                                
+                                                <img src="~/ArticlesPictures/articles.jpg" alt="">
+                                            </a>
+                                            }
+                                            else
+                                            {
+                                                <a class="image-scale" href="#">
+                                                    <img src="../ArticlesPictures/@item.ArticlePicture" alt="">
+
+                                                </a>
+                                            }
+
+                                        </div>
+                                        <div class="blog-content">
+                                            <div class="blog-meta">
+                                                <span class="admin-type">
+                                                    <i class="fa fa-user"></i>
+                                                    Public
+                                                </span>
+                                                <span class="date-type">
+                                                    <i class="fa fa-calendar"></i>
+                                                    @item.DatePosted.ToString("yyyy-MM-dd")
+                                                </span>
+                                                @if (SignInManager.IsSignedIn(User) && User.IsInRole("Administrator"))
+                                                {
+                                                    <span class="comments-type">
+                                                        <a class="btn btn-danger text-white  floatright" style="cursor:pointer; width: auto;" onclick="DeleteArticle(`/api/Articles?id=@item.ArticleID`)">Delete</a>
+                                                    </span>
+                                                }
+
+                                            </div>
+                                            <a href="#">
+                                                <h4>@item.ArticleHeading</h4>
+                                            </a>
+                                            <p>@item.ArticleText</p>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+
+                            <!-- End single blog -->
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2 col-sm-8 col-xs-12">
+
+                </div>
+            </div>
+            <!-- End Right Sidebar -->
+        </div>
+        <!-- End row -->
+
+        <div id="pagination-container">
+
+        </div>
+    </div>
+</div>

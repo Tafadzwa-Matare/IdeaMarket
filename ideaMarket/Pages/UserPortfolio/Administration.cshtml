@@ -1,0 +1,347 @@
+﻿@page
+@model ideaMarket.Pages.UserPortfolio.AdministrationModel
+@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+@section Scripts{
+    <script>
+//-----------------------
+        //- EMPLOYEE ACTIVITIES PERFOMANCE CHART -
+        //-----------------------
+
+
+        var ticksStyle = {
+            fontColor: '#495057',
+            fontStyle: 'bold'
+        }
+
+        var mode = 'index'
+        var intersect = true
+
+        var $activitiesChart = $('#activities-chart')
+        var activitiesChart = new Chart($activitiesChart, {
+            type: 'bar',
+            data: {
+                labels: ['JAN', 'FEB', 'MAR', 'APR', 'MAY','JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'],
+                datasets: [
+                    {
+                        backgroundColor: '#007bff',
+                        borderColor: '#007bff',
+                        data: [@Model.JanIdeasTotal, @Model.FebIdeasTotal, @Model.MarIdeasTotal, @Model.AprIdeasTotal, @Model.MayIdeasTotal, @Model.JunIdeasTotal, @Model.JulIdeasTotal, @Model.AugIdeasTotal, @Model.SepIdeasTotal, @Model.OctIdeasTotal, @Model.NovIdeasTotal, @Model.DecIdeasTotal]
+                    },
+                    {
+                        backgroundColor: '#ced4da',
+                        borderColor: '#ced4da',
+                        data: [@Model.JanInvestmentsActivities, @Model.FebInvestmentsActivities, @Model.MarInvestmentsActivities, @Model.AprInvestmentsActivities, @Model.MayInvestmentsActivities, @Model.JunInvestmentsActivities, @Model.JulInvestmentsActivities, @Model.AugInvestmentsActivities, @Model.SepInvestmentsActivities, @Model.OctInvestmentsActivities, @Model.NovInvestmentsActivities, @Model.DecInvestmentsActivities]
+                    }
+                ]
+            },
+            options: {
+                maintainAspectRatio: false,
+                tooltips: {
+                    mode: mode,
+                    intersect: intersect
+                },
+                hover: {
+                    mode: mode,
+                    intersect: intersect
+                },
+                legend: {
+                    display: false
+                },
+                scales: {
+                    yAxes: [{
+                        // display: false,
+                        gridLines: {
+                            display: true,
+                            lineWidth: '4px',
+                            color: 'rgba(0, 0, 0, .2)',
+                            zeroLineColor: 'transparent'
+                        },
+
+                    }],
+                    xAxes: [{
+                        display: true,
+                        gridLines: {
+                            display: false
+                        },
+                        ticks: ticksStyle
+                    }]
+                }
+            }
+        })
+    </script>
+
+
+
+    <script>
+        $(document).ready(function () {
+            $('.custom-file-input').on("change", function () {
+                var fileName = $(this).val().split("\\").pop();
+                $(this).next('.custom-file-label').html(fileName);
+            });
+        })
+
+        $(document).ready(function () {
+            $("a.demo-1").simplePopup();
+            $("#Post-News").simplePopup({ type: "html", htmlSelector: "#CreateNewsPopup" });
+        });
+
+        $(document).ready(function () {
+            $("a.demo-1").simplePopup();
+            $("#Post-Article").simplePopup({ type: "html", htmlSelector: "#CreateArticlePopup" });
+        });
+    </script>
+
+
+
+}
+
+<div class="page-area-admin">
+    <div class="breadcumb-overlay"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="breadcrumb text-center">
+                    <div class="section-headline white-headline">
+                        <h3>ADMIN hub</h3>
+                    </div>
+                    <ul class="breadcrumb-bg">
+                        <li class="home-bread">Home</li>
+                        <li>Admin hub</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="blog-area fix page-padding">
+    <div class="container">
+        <div class="row">
+            <div class="blog-sidebar-right">
+
+                <!-- Start Right Sidebar blog -->
+                <div class="col-md-3 col-sm-3 col-xs-12">
+                    <div class="left-head-blog right-side">
+                        <div class="left-blog-page">
+                            <div class="left-tags blog-tags">
+                                <div class="popular-tag left-side-tags left-blog">
+                                    <h4>
+                                        Post New Idea
+                                    </h4><br />
+                                    <form action="#">
+                                        <div class="">
+                                            <a asp-page="/UserPortfolio/portfolioNewIdea" class="newIdea-btn"><i class="ti-light-bulb"></i> Launch idea</a>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="left-blog-page">
+                            <div class="left-blog blog-category">
+                                <h4>Portfolio Menu</h4>
+                                <ul>
+                                    <li><span><i class="fa fa-user"></i></span><a asp-page="/UserPortfolio/PortfolioProfile">Profile</a></li>
+                                    @if (SignInManager.IsSignedIn(User) && User.IsInRole("Idea-Owner"))
+                                    {
+                                        <li><span><i class="fa fa-lightbulb-o"></i></span><a asp-page="/UserPortfolio/myIdeas">My Ideas</a></li>
+                                    }
+
+                                    @if (SignInManager.IsSignedIn(User) && User.IsInRole("Investor"))
+                                    {
+                                        <li><span><i class="fa fa-briefcase"></i></span><a asp-page="/UserPortfolio/myInvestments">My Investments</a></li>
+                                    }
+
+                                    @if (SignInManager.IsSignedIn(User) && User.IsInRole("Administrator"))
+                                    {
+                                        <li><span><i class="fa fa-user"></i></span><a asp-page="/UserPortfolio/Administration">Admin HuB</a></li>
+                                    }
+
+                                </ul>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+
+                <div class="col-md-9 col-sm-9 col-xs-12">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+
+                        <div class="single-blog">
+
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <br />
+                                    <div class="section-headline text-center">
+                                        <h4>Member Statics</h4>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <div class="row">
+                                        <div class="work-proses-inner text-center">
+                                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                                <div class="single-proses last-item">
+                                                    <div class="proses-content">
+                                                        <div class="proses-icon point-green">
+                                                            <span class="point-view">@Model.TotalMembers</span>
+                                                            <a href="#"><i class="ti-bar-chart-alt"></i></a>
+                                                        </div>
+                                                        <div class="proses-text">
+                                                            <h4>Our Members</h4>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- End column -->
+                                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                                <div class="single-proses">
+                                                    <div class="proses-content">
+                                                        <div class="proses-icon point-blue">
+                                                            <span class="point-view">@Model.TotalInvestors</span>
+                                                            <a href="#"><i class="ti-briefcase"></i></a>
+                                                        </div>
+                                                        <div class="proses-text">
+                                                            <h4>Total Investors</h4>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- End column -->
+                                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                                <div class="single-proses">
+                                                    <div class="proses-content">
+                                                        <div class="proses-icon point-orange">
+                                                            <span class="point-view">@Model.TotalIdeaOwners</span>
+                                                            <a href="#"><i class="ti-light-bulb"></i></a>
+                                                        </div>
+                                                        <div class="proses-text">
+                                                            <h4>Total Idea-Owners</h4>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- End column -->
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> <br />
+                        </div>
+
+                        <div class="row">
+                            <div class="contact-inner">
+
+                                <!-- Start contact icon column -->
+                                <div class="col-md-12">
+                                    <div class="contact-icon text-center">
+                                        <h4>News and Articles</h4> <br />
+                                        <a class="feature-btn" id="Post-News">Post News</a>&nbsp;
+                                        <a class="feature-btn" id="Post-Article">Post Article</a>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+
+                        <h5 class="text-center">Ideas Launched Vs Investments(monthly)</h5>
+                        <div class="row">
+                            <canvas id="activities-chart" width="400" height="300"></canvas>
+                        </div>
+                        <div class="d-flex flex-row justify-content-end">
+                            <span class="mr-2">
+                                <i class="fa fa-square text-primary"></i> Ideas Launched
+                            </span>
+
+                            <span>
+                                <i class="fa fa-square" style="color:lightgray"></i> Investments
+                            </span>
+                        </div><br />
+
+
+                    </div>
+                </div>
+            </div>
+            <!-- End Right Sidebar -->
+        </div>
+        <!-- End row -->
+
+
+
+
+
+
+
+        <div id="CreateNewsPopup">
+            <div>
+                <h4 style="color: orange">Post News</h4>
+                <form method="post" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label asp-for="News.NewsHeading">News Heading</label>
+                        <input type="text" class="form-control" asp-for="News.NewsHeading" placeholder="">
+                        <small id="emailHelp" class="form-text text-muted">Write Your Article Text here</small>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="News.NewsText">News</label>
+                        <textarea asp-for="News.NewsText" class="form-control" rows="5" placeholder="Type News.."></textarea>
+                        <small id="emailHelp" class="form-text text-muted">Write Your News Text here</small>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="NewsPicture">Add Picture:</label>
+                        <input type="file" class="custom-file-input form-control" asp-for="NewsPicture">
+                        <small id="emailHelp" class="form-text text-muted">Picture Is Optional</small>
+                        <input type="hidden" asp-for="News.DatePosted" value="@DateTime.Now.ToString("yyyy-MM-dd")" />
+                    </div>
+
+
+                    <button asp-page-handler="News" type="submit" class="btn btn-primary">Submit</button>
+                </form>
+
+
+
+            </div>
+
+        </div>
+
+
+        <div id="CreateArticlePopup">
+            <div>
+                <h4 style="color: orange">Post Article</h4>
+                <form method="post" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label asp-for="Articles.ArticleHeading">Article Heading</label>
+                        <input type="text" class="form-control" asp-for="Articles.ArticleHeading" placeholder="">
+                        <small id="emailHelp" class="form-text text-muted">Write Your Article Text here</small>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Articles.ArticleText">Article Text</label>
+                        <textarea asp-for="Articles.ArticleText" class="form-control" rows="5" placeholder="Article Text.."></textarea>
+                        <small id="emailHelp" class="form-text text-muted">Write Your Article Text here</small>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ArticlePicture">Add Picture:</label>
+                        <input type="file" class="custom-file-input form-control" asp-for="ArticlePicture">
+                        <small id="emailHelp" class="form-text text-muted">Picture Is Optional</small>
+                        <input type="hidden" asp-for="Articles.DatePosted" value="@DateTime.Now.ToString("yyyy-MM-dd")" />
+                    </div>
+
+
+                    <button asp-page-handler="Articles" type="submit" class="btn btn-primary">Submit</button>
+                </form>
+
+
+
+            </div>
+
+        </div>
+
+
+    </div>
+</div>

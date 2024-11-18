@@ -1,0 +1,95 @@
+﻿@page
+@model ideaMarket.Pages.Platform.UserPublicProfileModel
+@{
+    ViewData["Title"] = "UserPublicProfiles";
+}
+
+
+<!-- Start breadcumb Area -->
+<div class="page-area-memberProfile">
+    <div class="breadcumb-overlay"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="breadcrumb text-center">
+                    <div class="section-headline white-headline">
+                        <h3>Member Profile</h3>
+                    </div>
+                    <ul class="breadcrumb-bg">
+                        <li class="home-bread">Home</li>
+                        <li>Login</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+
+<div class="counter-area fix area-padding-2">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-1 col-sm-12 col-xs-12">
+
+            </div>
+
+            <div class="col-md-10 col-sm-12 col-xs-12">
+                <div class="mission-about">
+                    <div class="mission-icon">
+                        @if (Model.myUser.ProfilePicture == null)
+                        {
+                            <img src="../ProfilePictures/userdefault.png" alt="">
+                        }
+                        else
+                        {
+                            <img src="../ProfilePictures/@Model.myUser.ProfilePicture" alt="">
+                        }
+                    </div>
+                    <div class="mission-text">
+                        <h4>@Model.myUser.FirstName @Model.myUser.Surname</h4>
+                        <h5 style="color: grey;">Investor</h5>
+                        <h6 style="color: #E6922E;"><i class="fa fa-envelope"></i> Email:  <a href="mailto:@Model.myUser.Email" style="color:#E6922E;"> @Model.myUser.Email</a> </h6>
+                        <br />
+                    </div>
+
+                    <!-- Idea Contact Details -->
+                    <div class="row">
+                        <div class="contact-inner">
+                          
+                            <!-- Start contact icon column -->
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <div class="contact-icon text-center">
+                                    <div class="single-icon">
+                                        <i class="flaticon-024-megaphone"></i>
+                                        <p>
+                                            <h4>Investor Details</h4>
+                                            Member-Name: @Model.myUser.FirstName @Model.myUser.Surname<br>
+                                            <span>  Email:</span><br>
+                                            <span>  Mobile Number: @Model.myUser.PhoneNumber</span><br>
+                                            <span>  Address: @Model.myUser.Address</span>
+                                        </p>
+                                    </div>
+
+                                </div>
+                            </div>
+                          
+                        </div>
+                    </div>
+
+
+
+
+                </div>
+            </div>
+
+            <div class="col-md-1 col-sm-12 col-xs-12">
+
+            </div>
+
+
+        </div>
+      
+    </div>
+
+</div>
+

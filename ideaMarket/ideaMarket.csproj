@@ -1,0 +1,146 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Migrations\20201224223434_moreIdeaFields1.cs" />
+    <Compile Remove="Migrations\20201224223434_moreIdeaFields1.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\js\vendor\chart.js\Chart.bundle.js" />
+    <None Include="wwwroot\js\vendor\chart.js\Chart.bundle.min.js" />
+    <None Include="wwwroot\js\vendor\chart.js\Chart.js" />
+    <None Include="wwwroot\js\vendor\chart.js\Chart.min.js" />
+    <None Include="wwwroot\js\site.js" />
+    <None Include="wwwroot\js\vendor\Counter-Up-master\jquery.counterup.js" />
+    <None Include="wwwroot\js\vendor\Counter-Up-master\jquery.counterup.min.js" />
+    <None Include="wwwroot\js\vendor\Counter-Up-master\LICENSE" />
+    <None Include="wwwroot\js\vendor\Counter-Up-master\README.md" />
+    <None Include="wwwroot\js\vendor\sweetalert2\CHANGELOG.md" />
+    <None Include="wwwroot\js\vendor\sweetalert2\dist\sweetalert2.all.js" />
+    <None Include="wwwroot\js\vendor\sweetalert2\dist\sweetalert2.all.min.js" />
+    <None Include="wwwroot\js\vendor\sweetalert2\dist\sweetalert2.js" />
+    <None Include="wwwroot\js\vendor\sweetalert2\dist\sweetalert2.min.js" />
+    <None Include="wwwroot\js\vendor\sweetalert2\LICENSE" />
+    <None Include="wwwroot\js\vendor\sweetalert2\README.md" />
+    <None Include="wwwroot\js\vendor\sweetalert2\src\constants.js" />
+    <None Include="wwwroot\js\vendor\sweetalert2\src\globalState.js" />
+    <None Include="wwwroot\js\vendor\sweetalert2\src\instanceMethods.js" />
+    <None Include="wwwroot\js\vendor\sweetalert2\src\instanceMethods\buttons-handlers.js" />
+    <None Include="wwwroot\js\vendor\sweetalert2\src\instanceMethods\close.js" />
+    <None Include="wwwroot\js\vendor\sweetalert2\src\instanceMethods\enable-disable-elements.js" />
+    <None Include="wwwroot\js\vendor\sweetalert2\src\instanceMethods\getInput.js" />
+    <None Include="wwwroot\js\vendor\sweetalert2\src\instanceMethods\hideLoading.js" />
+    <None Include="wwwroot\js\vendor\sweetalert2\src\instanceMethods\keydown-handler.js" />
+    <None Include="wwwroot\js\vendor\sweetalert2\src\instanceMethods\popup-click-handler.js" />
+    <None Include="wwwroot\js\vendor\sweetalert2\src\instanceMethods\progress-steps.js" />
+    <None Include="wwwroot\js\vendor\sweetalert2\src\instanceMethods\show-reset-validation-error.js" />
+    <None Include="wwwroot\js\vendor\sweetalert2\src\instanceMethods\update.js" />
+    <None Include="wwwroot\js\vendor\sweetalert2\src\instanceMethods\_destroy.js" />
+    <None Include="wwwroot\js\vendor\sweetalert2\src\instanceMethods\_main.js" />
+    <None Include="wwwroot\js\vendor\sweetalert2\src\privateMethods.js" />
+    <None Include="wwwroot\js\vendor\sweetalert2\src\privateProps.js" />
+    <None Include="wwwroot\js\vendor\sweetalert2\src\scss\_animations.scss" />
+    <None Include="wwwroot\js\vendor\sweetalert2\src\scss\_body.scss" />
+    <None Include="wwwroot\js\vendor\sweetalert2\src\scss\_core.scss" />
+    <None Include="wwwroot\js\vendor\sweetalert2\src\scss\_mixins.scss" />
+    <None Include="wwwroot\js\vendor\sweetalert2\src\scss\_polyfills.scss" />
+    <None Include="wwwroot\js\vendor\sweetalert2\src\scss\_theming.scss" />
+    <None Include="wwwroot\js\vendor\sweetalert2\src\scss\_toasts-animations.scss" />
+    <None Include="wwwroot\js\vendor\sweetalert2\src\scss\_toasts-body.scss" />
+    <None Include="wwwroot\js\vendor\sweetalert2\src\scss\_toasts.scss" />
+    <None Include="wwwroot\js\vendor\sweetalert2\src\staticMethods.js" />
+    <None Include="wwwroot\js\vendor\sweetalert2\src\staticMethods\argsToParams.js" />
+    <None Include="wwwroot\js\vendor\sweetalert2\src\staticMethods\dom.js" />
+    <None Include="wwwroot\js\vendor\sweetalert2\src\staticMethods\fire.js" />
+    <None Include="wwwroot\js\vendor\sweetalert2\src\staticMethods\mixin.js" />
+    <None Include="wwwroot\js\vendor\sweetalert2\src\staticMethods\queue.js" />
+    <None Include="wwwroot\js\vendor\sweetalert2\src\staticMethods\showLoading.js" />
+    <None Include="wwwroot\js\vendor\sweetalert2\src\staticMethods\timer.js" />
+    <None Include="wwwroot\js\vendor\sweetalert2\src\SweetAlert.js" />
+    <None Include="wwwroot\js\vendor\sweetalert2\src\sweetalert2.js" />
+    <None Include="wwwroot\js\vendor\sweetalert2\src\sweetalert2.scss" />
+    <None Include="wwwroot\js\vendor\sweetalert2\src\utils\aria.js" />
+    <None Include="wwwroot\js\vendor\sweetalert2\src\utils\classes.js" />
+    <None Include="wwwroot\js\vendor\sweetalert2\src\utils\defaultInputValidators.js" />
+    <None Include="wwwroot\js\vendor\sweetalert2\src\utils\DismissReason.js" />
+    <None Include="wwwroot\js\vendor\sweetalert2\src\utils\dom\animationEndEvent.js" />
+    <None Include="wwwroot\js\vendor\sweetalert2\src\utils\dom\domUtils.js" />
+    <None Include="wwwroot\js\vendor\sweetalert2\src\utils\dom\getters.js" />
+    <None Include="wwwroot\js\vendor\sweetalert2\src\utils\dom\index.js" />
+    <None Include="wwwroot\js\vendor\sweetalert2\src\utils\dom\init.js" />
+    <None Include="wwwroot\js\vendor\sweetalert2\src\utils\dom\inputUtils.js" />
+    <None Include="wwwroot\js\vendor\sweetalert2\src\utils\dom\measureScrollbar.js" />
+    <None Include="wwwroot\js\vendor\sweetalert2\src\utils\dom\parseHtmlToContainer.js" />
+    <None Include="wwwroot\js\vendor\sweetalert2\src\utils\dom\renderers\render.js" />
+    <None Include="wwwroot\js\vendor\sweetalert2\src\utils\dom\renderers\renderActions.js" />
+    <None Include="wwwroot\js\vendor\sweetalert2\src\utils\dom\renderers\renderCloseButton.js" />
+    <None Include="wwwroot\js\vendor\sweetalert2\src\utils\dom\renderers\renderContainer.js" />
+    <None Include="wwwroot\js\vendor\sweetalert2\src\utils\dom\renderers\renderContent.js" />
+    <None Include="wwwroot\js\vendor\sweetalert2\src\utils\dom\renderers\renderFooter.js" />
+    <None Include="wwwroot\js\vendor\sweetalert2\src\utils\dom\renderers\renderHeader.js" />
+    <None Include="wwwroot\js\vendor\sweetalert2\src\utils\dom\renderers\renderIcon.js" />
+    <None Include="wwwroot\js\vendor\sweetalert2\src\utils\dom\renderers\renderImage.js" />
+    <None Include="wwwroot\js\vendor\sweetalert2\src\utils\dom\renderers\renderInput.js" />
+    <None Include="wwwroot\js\vendor\sweetalert2\src\utils\dom\renderers\renderPopup.js" />
+    <None Include="wwwroot\js\vendor\sweetalert2\src\utils\dom\renderers\renderProgressSteps.js" />
+    <None Include="wwwroot\js\vendor\sweetalert2\src\utils\dom\renderers\renderTitle.js" />
+    <None Include="wwwroot\js\vendor\sweetalert2\src\utils\ieFix.js" />
+    <None Include="wwwroot\js\vendor\sweetalert2\src\utils\iosFix.js" />
+    <None Include="wwwroot\js\vendor\sweetalert2\src\utils\isNodeEnv.js" />
+    <None Include="wwwroot\js\vendor\sweetalert2\src\utils\openPopup.js" />
+    <None Include="wwwroot\js\vendor\sweetalert2\src\utils\params.js" />
+    <None Include="wwwroot\js\vendor\sweetalert2\src\utils\scrollbarFix.js" />
+    <None Include="wwwroot\js\vendor\sweetalert2\src\utils\setParameters.js" />
+    <None Include="wwwroot\js\vendor\sweetalert2\src\utils\Timer.js" />
+    <None Include="wwwroot\js\vendor\sweetalert2\src\utils\utils.js" />
+    <None Include="wwwroot\js\vendor\sweetalert2\src\variables.scss" />
+    <None Include="wwwroot\js\vendor\toastr\toastr.js.map" />
+    <None Include="wwwroot\js\vendor\toastr\toastr.min.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MailKit" Version="2.10.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="3.1.5" />
+    <PackageReference Include="Microsoft.AspNetCore.Hosting" Version="2.2.7" />
+    <PackageReference Include="Microsoft.AspNetCore.Http.Features" Version="3.1.5" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.5" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.1.10" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="3.1.5" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.5" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Abstractions" Version="3.1.5" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Analyzers" Version="3.1.5" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.5">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="3.1.5" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="3.1.5" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.5" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.5">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.TypeScript.MSBuild" Version="4.1.2">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.4" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+   
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Pages\Account\" />
+    <Folder Include="wwwroot\IdeaPlans\" />
+    <Folder Include="wwwroot\ArticlesPictures\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <TypeScriptCompile Include="wwwroot\js\vendor\sweetalert2\sweetalert2.d.ts" />
+  </ItemGroup>
+
+</Project>

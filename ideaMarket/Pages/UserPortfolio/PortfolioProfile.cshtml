@@ -1,0 +1,342 @@
+﻿@page
+@model ideaMarket.Pages.Platform.PortfolioModel
+@{
+    ViewData["Title"] = "Portfolio";
+}
+
+
+@section Scripts{
+    @*<script>
+            $(document).ready(function () {
+                $("a.demo-1").simplePopup();
+                $("#newIdea-btn").simplePopup({ type: "html", htmlSelector: "#CreateIdeaPopup" });
+            });
+        </script>*@
+
+
+    <script type="text/javascript">
+    $(document).ready(function () {
+        if ('@TempData["message"]' == "UpdateProfile") {
+            console.log("true");
+            Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'Your Profile Has Been Updated',
+                showConfirmButton: false,
+                timer: 1500
+            })
+
+        }
+         else if ('@TempData["message"]' == "Added") {
+            console.log("true");
+            Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'Your Idea Has been Uploaded',
+                showConfirmButton: false,
+                timer: 1500
+            })
+
+        }
+        else if ('@TempData["message"]' == "LoggedIn") {
+
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+                width: 280,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            })
+
+            Toast.fire({
+                icon: 'success',
+                title: 'Sign In successfull'
+            })
+
+
+
+        }
+        else if ('@TempData["messageSignup"]' == 35) {
+
+            Swal.fire({
+                title: 'Welcome To Idea Market!!',
+                text: 'Adjust Your Profile Role To Either Idea-Owner or Investor or Both',
+                width: 600,
+                padding: '3em',
+                background: '#fff url("")',
+                backdrop: `
+                    rgba(0,0,123,0.4)
+                    url("../img/background/worldbulb.gif")
+                    left top
+                    no-repeat
+                  `
+            })
+
+
+       }
+       else {
+            console.log("fail");
+
+       }
+    });
+    </script>
+    <script>
+
+        $(document).ready(function () {
+            $('.custom-file-input').on("change", function () {
+                var fileName = $(this).val().split("\\").pop();
+                $(this).next('.custom-file-label').html(fileName);
+            });
+        })
+
+    </script>
+}
+<div class="page-area-memberProfile">
+    <div class="breadcumb-overlay"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="breadcrumb text-center">
+                    <div class="section-headline white-headline">
+                        <h3>Portfolio</h3>
+                    </div>
+                    <ul class="breadcrumb-bg">
+                        <li class="home-bread">Home</li>
+                        <li>My Portfolio</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="blog-area fix page-padding">
+    <div class="container">
+        <div class="row">
+            <div class="blog-sidebar-right">
+
+                <!-- Start Right Sidebar blog -->
+                <div class="col-md-3 col-sm-3 col-xs-12">
+                    <div class="left-head-blog right-side">
+
+
+
+
+                        <div class="left-blog-page">
+                            <div class="left-blog blog-category">
+                                <h4>Portfolio Menu</h4>
+                                <ul>
+                                    <li><span><i class="fa fa-user"></i></span><a asp-page="/UserPortfolio/PortfolioProfile">Profile</a></li>
+                                    @if (SignInManager.IsSignedIn(User) && User.IsInRole("Idea-Owner"))
+                                    {
+                                    <li><span><i class="fa fa-lightbulb-o"></i></span><a asp-page="/UserPortfolio/myIdeas">My Ideas</a></li>
+                                    }
+
+                                    @if (SignInManager.IsSignedIn(User) && User.IsInRole("Investor"))
+                                    {
+                                    <li><span><i class="fa fa-briefcase"></i></span><a asp-page="/UserPortfolio/myInvestments">My Investments</a></li>
+                                    }
+
+                                    @if (SignInManager.IsSignedIn(User) && User.IsInRole("Administrator"))
+                                    {
+                                    <li><span><i class="fa fa-user"></i></span><a asp-page="/UserPortfolio/Administration">Admin HuB</a></li>
+                                    }
+
+                                    <li><span><i class="fa fa-lightbulb-o"></i></span><a asp-page="/UserPortfolio/portfolioNewIdea">Launch Idea</a></li>
+
+                                </ul>
+
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="left-blog-page" >
+                            <div class="single-member" >
+                                <div class="team-img">
+
+                                    @if (Model.myUser.ProfilePicture == null)
+                                    {
+                                    <img src="../ProfilePictures/userdefault.png" alt="">
+                                    }
+                                    else
+                                    {
+                                    <img src="../ProfilePictures/@Model.myUser.ProfilePicture" alt="">
+                                    }
+
+
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+
+                    </div>
+                </div>
+
+                <div class="col-md-9 col-sm-9 col-xs-12">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div>
+
+                            <div class="row">
+                                <div class="blog-content" style="border: 1px solid #E6922E">
+                                    <div>
+
+                                        <h4 class="text-center" style="color:darkorange">EDIT MY PROFILE</h4>
+                                        <br />
+                                        <div class="faq-quote" style="margin-top: 5px;">
+                                            <div class="row">
+                                                <form method="post" enctype="multipart/form-data" class="form-horizontal">
+                                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                                        <input type="hidden" asp-for="myUser.Id" />
+                                                        <div class="row form-group">
+                                                            <div class="col-md-4">
+                                                                <label asp-for="myUser.FirstName" class="col-form-label">First Name</label>
+                                                            </div>
+                                                            <div class="col-md-8">
+                                                                <input asp-for="myUser.FirstName" readonly="readonly" type="text" class="form-control">
+                                                            </div>
+
+                                                        </div>
+                                                        <span asp-validation-for="myUser.FirstName" class="text-danger"></span>
+                                                        <div class="row form-group">
+                                                            <div class="col-md-4">
+                                                                <label asp-for="myUser.Surname" class="col-form-label">Last Name</label>
+                                                            </div>
+                                                            <div class="col-md-8">
+                                                                <input asp-for="myUser.Surname" type="text" class="form-control">
+                                                            </div>
+
+                                                        </div>
+                                                        <span asp-validation-for="myUser.Surname" class="text-danger"></span>
+                                                        <div class="row form-group">
+                                                            <div class="col-md-4">
+                                                                <label asp-for="myUser.Email" class="col-form-label">E-mail</label>
+                                                            </div>
+                                                            <div class="col-md-8">
+                                                                <input asp-for="myUser.Email" type="text" readonly="readonly" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                        <span asp-validation-for="myUser.Email" class="text-danger"></span>
+                                                        <div class="row form-group">
+
+                                                            <div class="col-md-4">
+                                                                <label asp-for="myUser.PhoneNumber" class="col-form-label">Phone Number</label>
+                                                            </div>
+                                                            <div class="col-md-8">
+                                                                <input asp-for="myUser.PhoneNumber" type="text" class="form-control">
+                                                            </div>
+
+                                                        </div>
+                                                        <span asp-validation-for="myUser.PhoneNumber" class="text-danger"></span>
+                                                        <div class="row form-group">
+                                                            <div class="col-md-4">
+                                                                <label asp-for="myUser.Address" class="col-form-label">Address</label>
+                                                            </div>
+                                                            <div class="col-md-8">
+                                                                <textarea asp-for="myUser.Address" rows="2" class="form-control"></textarea>
+                                                            </div>
+
+                                                        </div>
+                                                        <span asp-validation-for="myUser.Address" class="text-danger"></span>
+
+                                                        <div class="row form-group">
+                                                            <div class="col-md-4">
+                                                                <label asp-for="myUser.ProfilePicture" class="custom-file-label">Profile Picture</label>
+                                                            </div>
+                                                            <div class="col-md-8">
+                                                                <input asp-for="ProfileImage" type="file" class="custom-file-input" id="">
+                                                            </div>
+
+                                                        </div>
+                                                        <span asp-validation-for="myUser.ProfilePicture" class="text-danger"></span>
+
+                                                        <div class="row form-group">
+
+                                                            <div class="col-md-4">
+                                                                <label for="name">Roles</label>
+                                                            </div>
+                                                            <div class="col-md-8">
+                                                                @for (int i = 1; i < Model.UserInRole.Count; i++)
+                                                                {
+                                                                    <input type="hidden" asp-for="@Model.UserInRole[i].RoleId">
+                                                                    <input type="hidden" asp-for="@Model.UserInRole[i].RoleName">
+                                                                    <label asp-for="@Model.UserInRole[i].IsSelected">
+                                                                        @Model.UserInRole[i].RoleName
+                                                                    </label>
+                                                                    <input asp-for="@Model.UserInRole[i].IsSelected" type="checkbox">
+
+                                                                }
+
+
+                                                            </div>
+
+
+                                                        </div>
+                                                        <div class="row form-group">
+                                                            <div class="col-md-12">
+                                                                <button type="submit" id="save" class="btn btn-warning">Save</button>
+                                                            </div>
+                                                            
+                                                        </div>
+                                                    </div>
+
+                                                </form>
+
+
+                                                @*<div style="border: 1px solid #E6922E" id="CreateIdeaPopup">
+                                                        <div>
+                                                            <h4 style="color: orange">New Idea</h4>
+                                                            <form>
+                                                                <div class="form-group">
+                                                                    <label for="exampleInputEmail1">Email address</label>
+                                                                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                                                                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label for="exampleInputPassword1">Password</label>
+                                                                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                                                                </div>
+
+
+                                                                <div class="form-group">
+                                                                    <label for="exampleTextarea">Example textarea</label>
+                                                                    <textarea class="form-control" id="exampleTextarea" rows="2"></textarea>
+                                                                </div>
+
+
+                                                                <button type="submit" class="btn btn-primary">Submit</button>
+                                                            </form>
+                                                        </div>
+
+                                                    </div>*@
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Right Sidebar -->
+        </div>
+        <!-- End row -->
+    </div>
+</div>
+
+
+

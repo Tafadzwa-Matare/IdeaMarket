@@ -1,0 +1,143 @@
+﻿@model IEnumerable<ideaMarket.ViewModels.InvestorViewModel>
+@{
+    ViewData["Title"] = "PortfolioInvestorsView";
+    Layout = "_Layout";
+}
+
+
+<div class="page-area-TopInvestors">
+    <div class="breadcumb-overlay"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="breadcrumb text-center">
+                    <div class="section-headline white-headline">
+                        <h3>TOP Investors</h3>
+                    </div>
+                    <ul class="breadcrumb-bg">
+                        <li class="home-bread">Home</li>
+                        <li>Top Investors</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="blog-area fix page-padding">
+    <div class="container">
+        <div class="row">
+            <div class="blog-sidebar-right">
+
+                <!-- Start Right Sidebar blog -->
+                <div class="col-md-4 col-sm-4 col-xs-12">
+                    <div class="left-head-blog right-side">
+                        <div class="left-blog-page">
+                            <div class="left-tags blog-tags">
+                                <div class="popular-tag left-side-tags left-blog">
+                                    <h4>
+                                        Post New Idea
+                                    </h4><br />
+                                    <form action="#">
+                                        <div class="">
+                                            <a asp-page="/Platform/portfolioNewIdea" class="newIdea-btn"><i class="ti-light-bulb"></i> Launch New idea</a>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="left-blog-page">
+                            <div class="left-blog blog-category">
+                                <h4>Portfolio Menu</h4>
+                                <ul>
+                                    <li><span><i class="fa fa-lightbulb-o"></i></span><a asp-page="/UserPortfolio/PortfolioTopIdeas">Top Ideas</a></li>
+                                    <li><span><i class="fa fa-briefcase"></i></span><a asp-controller="Investors" asp-action="PortfolioInvestors">Top Investors</a></li>
+                                    <li><span><i class="fa fa-lightbulb-o"></i></span><a asp-page="/UserPortfolio/myIdeas">My Ideas</a></li>
+                                    <li><span><i class="fa fa-briefcase"></i></span><a asp-page="/UserPortfolio/myInvestments">My Investments</a></li>
+                                    <li><span><i class="fa fa-user"></i></span><a asp-page="/UserPortfolio/PortfolioProfile">Profile</a></li>
+                                    <li><span><i class="fa fa-user"></i></span><a asp-page="/UserPortfolio/Adiministration">Admin HuB</a></li>
+
+                                </ul>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+
+                <div class="col-md-8 col-sm-8 col-xs-12">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div>
+
+
+                            <div class="row">
+                                <div class="team-member text-center">
+                                    <!-- Single team member -->
+
+                                    @foreach (var item in Model)
+                                    {
+                                        <div class="col-md-3 col-sm-6 col-xs-12">
+                                            <div class="single-member">
+                                                <div class="team-img">
+                                                    <a asp-route-userId="@item.Id" asp-page="/Platform/UserPublicProfile">
+
+                                                        @if (item.ProfilePicture == null)
+                                                        {
+                                                            <img src="../ProfilePictures/userdefault.png" alt="">
+                                                        }
+                                                        else
+                                                        {
+                                                            <img src="../ProfilePictures/@item.ProfilePicture" alt="">
+                                                        }
+
+                                                    </a>
+                                                </div>
+                                                <div class="team-content">
+                                                    <h5> <a asp-route-userId="@item.Id" asp-page="/Platform/UserPublicProfile">@item.FirstName @item.Surname</a></h5>
+                                                    <p>@Html.DisplayFor(modelItem => item.Username)</p>
+                                                    <ul class="team-hover">
+                                                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                                        <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+
+
+
+                                </div>
+                            </div>
+
+
+
+
+
+
+
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <div class="blog-pagination">
+                                    <ul class="pagination">
+                                        <li><a href="#">Prev</a></li>
+                                        <li class="active"><a href="#">1</a></li>
+                                        <li><a href="#">2</a></li>
+                                        <li><a href="#">3</a></li>
+                                        <li><a href="#">Next</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+
+
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Right Sidebar -->
+        </div>
+        <!-- End row -->
+    </div>
+</div>

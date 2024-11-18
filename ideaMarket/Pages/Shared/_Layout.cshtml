@@ -1,0 +1,398 @@
+﻿@using Microsoft.AspNetCore.Http;
+@using ideaMarket.Models
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+@{ 
+    var thisUser = await UserManager.GetUserAsync(User);
+}
+
+<!doctype html>
+<html class="no-js" lang="en">
+
+<!-- Mirrored from rockstheme.com/rocks/aievari-live/index-2.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 03 Mar 2020 08:27:43 GMT -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Idea Market</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="~/img/logo/logo-small.png">
+
+    <!-- all css here -->
+    <!-- bootstrap v3.3.6 css -->
+    <link rel="stylesheet" href="~/css/bootstrap.min.css">
+    <!-- owl.carousel css -->
+    <link rel="stylesheet" href="~/css/owl.carousel.css">
+    <link rel="stylesheet" href="~/css/owl.transitions.css">
+    <!-- Animate css -->
+    <link rel="stylesheet" href="~/css/animate.css">
+    <!-- meanmenu css -->
+    <link rel="stylesheet" href="~/css/meanmenu.min.css">
+    <!-- font-awesome css -->
+    <link rel="stylesheet" href="~/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/css/themify-icons.css">
+    <link rel="stylesheet" href="~/css/flaticon.css">
+    <!-- magnific css -->
+    <link rel="stylesheet" href="~/css/magnific.min.css">
+    <!-- style css -->
+    <link rel="stylesheet" href="~/css/style.css">
+    <!-- responsive css -->
+    <link rel="stylesheet" href="~/css/responsive.css">
+    <!-- simple-popup css -->
+    <link href="~/css/jquery.simple-popup.css" rel="stylesheet" />
+    <link href="~/js/popup-window/jquery.simple-popup.settings.css" rel="stylesheet" />
+    <!-- multiple-step-form css -->
+    @*<link href="~/css/multi-step-style.css" rel="stylesheet" />*@
+    <!-- modernizr css -->
+    <script src="~/js/vendor/modernizr-2.8.3.min.js"></script>
+    <!-- SweetAlert2 -->
+    <link href="~/js/vendor/sweetalert2/dist/sweetalert2.css" rel="stylesheet" />
+    <!-- Toastr  -->
+
+    <link href="~/js/vendor/toastr/toastr.min.css" rel="stylesheet" />
+
+</head>
+<body>
+
+    <!--[if lt IE 8]>
+        <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+    <div id="preloader"></div>
+    <header class="header-one">
+        <!-- Start top bar -->
+        <div class="topbar-area fix hidden-xs">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 col-sm-6">
+                        <div class="topbar-left">
+                            <ul>
+                                @if (SignInManager.IsSignedIn(User) && thisUser.EmailConfirmed == true)
+                                {
+                                    <li><a asp-page="/Platform/Portfolio"><i class="fa fa-user"></i> @thisUser.UserName</a></li>
+                                }
+                                else
+                                {
+                                    <li><a asp-page="/Admnistration/SignUp">Join The Global Market !!</a></li>
+                                }
+
+                            </ul>
+                        </div>
+                    </div>
+                    <div class=" col-md-6 col-sm-6">
+                        @*<div class="topbar-left">
+                                <ul>
+                                    <li><a href="#"><i class="fa fa-user"></i> @thisUser.UserName</a></li>
+                                </ul>
+                            </div>*@
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End top bar -->
+        <!-- header-area start -->
+        <div id="sticker" class="header-area header-area-2 hidden-xs">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 col-sm-12">
+                        <div class="row">
+                            <!-- logo start -->
+                            <div class="col-md-3 col-sm-3">
+                                <div class="logo">
+                                    <!-- Brand -->
+                                    <a class="navbar-brand page-scroll white-logo" asp-page="/Index">
+                                        <img src="../img/logo/logo2.png" alt="">
+                                    </a>
+                                    <a class="navbar-brand page-scroll black-logo logo-fit" asp-page="/Index">
+                                        <img src ="../img/logo/Artboard 1IDEA MARKET LOGO.jpg.png" alt="">
+                                    </a>
+                                </div>
+                                <!-- logo end -->
+                            </div>
+
+                            <div class="col-md-9 col-sm-9">
+                                <div class="header-right-link">
+                                    <!-- search option end -->
+                                    @if (SignInManager.IsSignedIn(User) && thisUser.EmailConfirmed == true)
+                                    {
+                                        <a asp-controller="UserIdentity" asp-action="logout" class="s-menu">
+                                            Logout
+                                            <span class="float-right text-muted text-sm"> <i class="fas fa-user-lock mr-2"></i></span>
+                                        </a>
+
+                                        @*<form method="post" asp-controller="UserIdentity" asp-action="Logout">
+                                                 <input class="s-menu" type="submit" value="Logout" />
+                                            </form>*@
+
+
+                                        //<a class="s-menu" asp-page="/Administration/Login">Logout</a>
+
+
+                                    }
+                                    else
+                                    {
+                                        <a class="s-menu" asp-page="/Administration/Login">Login</a>
+                                    }
+
+
+                                </div>
+                                <!-- mainmenu start -->
+                                <nav class="navbar navbar-default">
+                                    <div class="collapse navbar-collapse" id="navbar-example">
+                                        <div class="main-menu">
+
+                                            <ul class="nav navbar-nav navbar-right">
+                                                <li><a asp-page="/index">Home</a></li>
+                                                <li><a asp-controller="Investors" asp-action="Investors">Investors</a></li>
+                                                <li><a asp-page="/Platform/ideas">Ideas</a></li>
+                                                <li>
+                                                    <a class="pages" href="#">About</a>
+                                                    <ul class="sub-menu">
+                                                        <li><a asp-page="/Platform/about">About us</a></li>
+                                                        <li><a asp-page="/Platform/contact">contacts</a></li>
+
+                                                    </ul>
+                                                </li>
+
+
+                                                @if (SignInManager.IsSignedIn(User) && thisUser.EmailConfirmed == true)
+                                                {
+                                                    <li><a asp-page="/UserPortfolio/PortfolioProfile">Portfolio</a></li>
+                                                }
+
+
+                                                <li>
+                                                    <a class="pages" href="#">Other Services</a>
+                                                    <ul class="sub-menu">
+                                                        <li><a asp-page="/Platform/News">News</a></li>
+                                                        <li><a asp-page="/Platform/Articles">Articles</a></li>
+
+                                                    </ul>
+                                                </li>
+
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </nav>
+                                <!-- mainmenu end -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- header-area end -->
+        <!-- mobile-menu-area start -->
+        <div class="mobile-menu-area hidden-lg hidden-md hidden-sm">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="mobile-menu">
+                            <div class="logo">
+                                <a href="index-2.html"><img src="~/img/logo/ideaMarketLogo.png" alt="" /></a>
+                            </div>
+
+                            <nav id="dropdown">
+                                <ul>
+                                    <li><a asp-page="/index">Home</a></li>
+                                    <li><a asp-controller="Investors" asp-action="Investors">Investors</a></li>
+                                    <li><a asp-page="/Platform/ideas">Ideas</a></li>
+                                    <li>
+                                        <a class="pages" href="#">About</a>
+                                        <ul class="sub-menu">
+                                            <li><a asp-page="/Platform/about">About us</a></li>
+                                            <li><a asp-page="/Platform/contact">contacts</a></li>
+
+                                        </ul>
+                                    </li>
+                                    @if (SignInManager.IsSignedIn(User) && thisUser.EmailConfirmed == true)
+                                    {
+                                        <li><a asp-page="/UserPortfolio/PortfolioProfile">Portfolio</a></li>
+                                    }
+
+                                    <li>
+                                        <a class="pages" href="#">Other Services</a>
+                                        <ul class="sub-menu">
+                                            <li><a asp-page="/Platform/News">News</a></li>
+                                            <li><a asp-page="/Platform/Articles">Articles</a></li>
+
+                                        </ul>
+                                    </li>
+
+
+                                    <li>
+
+                                        @if (SignInManager.IsSignedIn(User) && thisUser.EmailConfirmed == true)
+                                        {
+                                            <a asp-controller="UserIdentity" asp-action="logout">
+                                                Logout
+                                                <span class="float-right text-muted text-sm"> <i class="fas fa-user-lock mr-2"></i></span>
+                                            </a>
+
+                                            @*<form method="post" asp-controller="UserIdentity" asp-action="Logout">
+                                                        <input class="s-menu" type="submit" value="Logout" />
+                                                </form>*@
+
+
+                                            //<a class="s-menu" asp-page="/Administration/Login">Logout</a>
+
+
+                                        }
+                                        else
+                                        {
+                                            <a asp-page="/Administration/Login">Login</a>
+                                        }
+
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- mobile-menu-area end -->
+    </header>
+
+    <section>
+        @RenderBody()
+    </section>
+    
+    <footer class="footer1 wow fadeInUp"data-wow-delay="400ms">
+        <div class="footer-area" style="border-top: 1px solid #E5E9F1">
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-5 col-sm-5 col-xs-12 wow fadeInLeft" data-wow-delay="600ms">
+                        <div class="footer-content logo-footer">
+                            <div class="footer-head">
+                                <div class="footer-logo">
+                                    <a class="footer-black-logo"  href="#"><img src="~/img/logo/Artboard 1IDEA MARKET LOGO.jpg.png" alt=""></a>
+                                </div>
+                                <p>
+
+                                    A Platform For Idea Owners, Think Tanks, Innovators and Investors To Learn, network, meet and establish business easily at low costs.
+                                </p>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end single footer -->
+                    <div class="col-md-3 col-sm-3 col-xs-12 wow fadeInLeft" data-wow-delay="800ms">
+                        <div class="footer-content">
+                            <div class="footer-head">
+                                <h4>Services Link</h4>
+                                <ul class="footer-list">
+                                    <li><a asp-page="/Platform/about">About us</a></li>
+                                    <li><a asp-page="/Platform/contact">Contact Us</a></li>
+                                    <li><a asp-page="/Platform/News">News</a></li>
+                                    <li><a asp-page="/Platform/Articles">Articles</a></li>
+
+                                </ul>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end single footer -->
+                    <div class="col-md-4 col-sm-4 col-xs-12 wow fadeInLeft" data-wow-delay="1000ms">
+                        <div class="footer-content last-content">
+                            <div class="footer-head">
+                                <h4>Information</h4>
+                                <div class="footer-contacts">
+                                    <p><span>Call :</span> +263773732842</p>
+                                    <p><span>Email :</span> ideamarketglobal@gmail.com</p>
+
+                                </div>
+                                <div class="footer-icons">
+                                    <ul>
+                                        <li>
+                                            <a href="https://www.facebook.com/105572694676533/posts/126330932600709/?app=fbl">
+                                                <i class="fa fa-facebook"></i>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="https://twitter.com/Ideamarket5?s=09">
+                                                <i class="fa fa-twitter"></i>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="mailto:ideamarket.global@gmail.com">
+                                                <i class="fa fa-envelope"></i>
+                                            </a>
+                                        </li>
+
+                                        <li>
+                                            <a href="https://www.instagram.com/ideamarket.co.zw?r=nametag">
+                                                <i class="fa fa-instagram"></i>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-area-bottom">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="copyright">
+                            <p>
+                                Copyright © 2021
+                                <a href="https://cassacrypttech.netlify.app/"><text style="color: royalblue">Cassacrypt Technologies</text></a> All Rights Reserved
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- End Footer area -->
+    <!-- all js here -->
+    <!-- jquery latest version -->
+    <script src="~/js/vendor/jquery-1.12.4.min.js"></script>
+    <script src="~/js/site.js"></script>
+    <!-- bootstrap js -->
+    <script src="~/js/bootstrap.min.js"></script>
+    <!-- owl.carousel js -->
+    <script src="~/js/owl.carousel.min.js"></script>
+    <!-- stellar js -->
+    <script src="~/js/jquery.stellar.min.js"></script>
+    <!-- magnific js -->
+    <script src="~/js/magnific.min.js"></script>
+    <!-- wow js -->
+    <script src="~/js/wow.min.js"></script>
+    <!-- meanmenu js -->
+    <script src="~/js/jquery.meanmenu.js"></script>
+    <!-- Form validator js -->
+    <script src="~/js/form-validator.min.js"></script>
+    <!-- plugins js -->
+    <script src="~/js/plugins.js"></script>
+    <!-- main js -->
+    <script src="~/js/main.js"></script>
+    <!-- Chart js -->
+    <script src="~/js/vendor/chart.js/Chart.min.js"></script>
+    <script src="~/js/vendor/chart.js/Chart.bundle.min.js"></script>
+
+    <!-- simple window-popup js -->
+    <script src="~/js/popup-window/jquery.simple-popup.js"></script>
+    <!-- multi-step-form js -->
+    @*<script src="~/js/multi-step-script.js"></script>
+    <script src="~/js/vendor/MultipleStepForm.js"></script>*@
+    <!-- SweetAlert2  -->
+
+    <script src="~/js/vendor/sweetalert2/dist/sweetalert2.all.min.js"></script>
+    <!-- Toastr  -->
+    <script src="~/js/vendor/toastr/toastr.min.js"></script>
+    <script src="~/js/vendor/Counter-Up-master/jquery.counterup.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/simplePagination.js/1.6/jquery.simplePagination.min.js"></script>
+
+    @RenderSection("Scripts", required: false)
+</body>
+
+<!-- Mirrored from rockstheme.com/rocks/aievari-live/index-2.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 03 Mar 2020 08:27:46 GMT -->
+</html>

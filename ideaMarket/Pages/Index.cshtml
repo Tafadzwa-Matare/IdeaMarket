@@ -1,0 +1,414 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+@section Scripts{
+    <script type="text/javascript">
+    $(document).ready(function () {
+        if ('@TempData["message"]' == "LoggedOut") {
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+                width: 280,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            })
+
+            Toast.fire({
+                icon: 'success',
+                title: 'Session Ended'
+            })
+
+        }
+        else if('@TempData["Message"]' == "TokenSent"){
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+                width: 280,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            })
+
+            Toast.fire({
+                icon: 'success',
+                title: 'Token Sussesfully Sent To Email'
+            })
+
+        }
+
+        else if('@TempData["Message"]' == "EmailSent"){
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+                width: 280,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            })
+
+            Toast.fire({
+                icon: 'success',
+                title: 'Email Successfully Sent'
+            })
+
+        }
+
+       else {
+            console.log("fail");
+
+       }
+    });
+    </script>
+}
+
+<!-- header end -->
+<!-- Start Slider Area -->
+<div class="intro-area">
+    <div class="main-overly"></div>
+    <div class="intro-carousel">
+        <div class="intro-content">
+            <div class="slider-images">
+                <img src="~/img/slider/ideawallpaper5.jpg" alt="">
+            </div>
+            <div class="slider-content">
+                <div class="display-table">
+                    <div class="display-table-cell">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <!-- Start Slider content -->
+                                    <div class="slide-content text-center">
+                                        <h2 class="title2" data-animation="fadeInUp" data-wow-delay="500ms">Enter IdeaMarket As:</h2>
+                                        <div class="layer-1-3">
+                                            <a asp-page="/Administration/SignUp" class="ready-btn-home left-btn wow fadeInLeft" data-animation="fadeInLeft" data-wow-delay="1000ms" style="width:auto">
+                                                <i class="fa fa-briefcase" aria-hidden="true"></i>
+                                                Investor
+                                            </a>
+
+                                            <a asp-page="/Administration/SignUp" class="ready-btn left-btn wow fadeInRight" data-animation="fadeInLeft" data-wow-delay="1000ms" style="width:auto">
+                                                <i class="fa fa-lightbulb-o" aria-hidden="true"></i>
+                                                Idea Owner
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <!-- End Slider content -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="slide-du-indicator"></div>
+        </div>
+        <div class="intro-content">
+            <div class="slider-images">
+                <img src="img/slider/gold-pile-2.jpg" alt="">
+            </div>
+            <div class="slider-content">
+                <div class="display-table">
+                    <div class="display-table-cell">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <!-- Start Slider content -->
+                                    <div class="slide-content text-center">
+                                        <h2 class="title2" data-animation="fadeInUp" data-delay="500ms">Enter IdeaMarket As:</h2>
+                                        <div class="layer-1-3">
+                                            <a asp-page="/Administration/SignUp" class="ready-btn-home left-btn" data-animation="fadeInLeft" data-delay="1000ms" data-wow-delay="10700ms" style="width:auto">
+                                                <i class="fa fa-briefcase" aria-hidden="true"></i>
+                                                Investor
+                                            </a>
+
+                                            <a asp-page="/Administration/SignUp" class="ready-btn left-btn" data-animation="fadeInRight" data-delay="1000ms" data-wow-delay="10700ms" style="width:auto">
+                                                <i class="fa fa-lightbulb-o" aria-hidden="true"></i>
+                                                Idea Owner
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <!-- End Slider content -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="slide-du-indicator"></div>
+        </div>
+
+
+
+
+        <div class="intro-content">
+            <div class="slider-images">
+                <img src="~/img/slider/talento.jpg" alt="">
+            </div>
+            <div class="slider-content">
+                <div class="display-table">
+                    <div class="display-table-cell">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <!-- Start Slider content -->
+                                    <div class="slide-content text-center">
+                                        <h2 class="title2" data-animation="fadeInUp" data-delay="500ms">Enter IdeaMarket As:</h2>
+                                        <div class="layer-1-3">
+                                            <a asp-page="/Administration/SignUp" class="ready-btn-home left-btn" data-animation="fadeInLeft" data-delay="1000ms" data-wow-delay="10700ms" style="width:auto">
+                                                <i class="fa fa-briefcase" aria-hidden="true"></i>
+                                                Investor
+                                            </a>
+
+                                            <a asp-page="/Administration/SignUp" class="ready-btn left-btn" data-animation="fadeInRight" data-delay="1000ms" data-wow-delay="10700ms" style="width:auto">
+                                                <i class="fa fa-lightbulb-o" aria-hidden="true"></i>
+                                                Idea Owner
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <!-- End Slider content -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="slide-du-indicator"></div>
+        </div>
+
+
+
+
+
+
+        <div class="intro-content">
+            <div class="slider-images">
+                <img src="~/img/slider/bulbnature.jpg" alt="">
+            </div>
+            <div class="slider-content">
+                <div class="display-table">
+                    <div class="display-table-cell">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <!-- Start Slider content -->
+                                    <div class="slide-content text-center">
+                                        <h2 class="title2" data-animation="fadeInUp" data-delay="500ms">Enter IdeaMarket As:</h2>
+                                        <div class="layer-1-3">
+                                            <a asp-page="/Administration/SignUp" class="ready-btn-home left-btn" data-animation="fadeInLeft" data-delay="1000ms" data-wow-delay="10700ms" style="width:auto">
+                                                <i class="fa fa-briefcase" aria-hidden="true"></i>
+                                                Investor
+                                            </a>
+
+                                            <a asp-page="/Administration/SignUp" class="ready-btn left-btn" data-animation="fadeInRight" data-delay="1000ms" data-wow-delay="10700ms" style="width:auto">
+                                                <i class="fa fa-lightbulb-o" aria-hidden="true"></i>
+                                                Idea Owner
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <!-- End Slider content -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="slide-du-indicator"></div>
+        </div>
+
+
+
+
+
+
+
+
+
+    </div>
+</div>
+<!-- End Slider Area -->
+<!-- Start Count area -->
+<div class="counter-area fix area-padding-2">
+    <div class="container">
+        <!-- Start counter Area -->
+        <div class="row">
+            <div class="fun-content">
+                <div class="col-md-3 col-sm-6 col-xs-12 wow fadeInUp" data-wow-delay="100ms">
+                    <!-- fun_text  -->
+                    <div class="fun_text">
+                        <span class="counter-icon"><i class="flaticon-034-reward"></i></span>
+                        <span class="counter">@Model.TotalMembers</span>
+                        <h4>Total Members</h4>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12 wow fadeInUp" data-wow-delay="300ms">
+                    <!-- fun_text  -->
+                    <div class="fun_text">
+                        <span class="counter-icon"><i class="flaticon-035-savings"></i></span>
+                        <span class="counter">@Model.TotalInvestors</span>
+                        <h4>Investors</h4>
+                    </div>
+                </div>
+
+                <div class="col-md-3 col-sm-6 col-xs-12 wow fadeInUp" data-wow-delay="500ms">
+
+                    <!-- fun_text  -->
+                    <div class="fun_text">
+                        <span class="counter-icon"><i class="flaticon-016-graph"></i></span>
+                        <span class="counter">@Model.TotalIdeaOwners</span>
+                        <h4>Idea Owners</h4>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12 wow fadeInUp" data-wow-delay="700ms">
+                    <!-- fun_text  -->
+                    <div class="fun_text">
+                        <span class="counter-icon"><i class="flaticon-043-world"></i></span>
+                        <span class="counter">@Model.TotalIdeas</span>
+                        <h4>Total Ideas</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Count area -->
+<!-- Start FAQ area -->
+<div class="faq-area bg-color area-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="section-headline text-center">
+                    <h3>Some important FAQ</h3>
+                    <p>Here are some frequently asked questions about Idea Market??.</p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <!-- Start Column Start -->
+            <div class="col-md-7 col-sm-6 col-xs-12">
+                <div class="company-faq">
+                    <div class="faq-full">
+                        <div class="faq-details">
+                            <div class="panel-group" id="accordion">
+                                <!-- Panel Default -->
+                                <div class="panel panel-default wow fadeInUp" data-wow-delay="100ms">
+                                    <div class="panel-heading">
+                                        <h4 class="check-title">
+                                            <a data-toggle="collapse" class="active" data-parent="#accordion" href="#check1">
+                                                <span class="acc-icons"></span>What is Idea Market all about?
+                                            </a>
+                                        </h4>
+                                    </div>
+                                    <div id="check1" class="panel-collapse collapse in">
+                                        <div class="panel-body">
+                                            <p>
+                                                Idea Market is a platform for idea owners, think tanks, innovators and investors to interact, learn, network, meet and establish business easily and at a low cost
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- End Panel Default -->
+                                <!-- Panel Default -->
+                                <div class="panel panel-default wow fadeInUp" data-wow-delay="400ms">
+                                    <div class="panel-heading">
+                                        <h4 class="check-title">
+                                            <a data-toggle="collapse" data-parent="#accordion" href="#check2">
+                                                <span class="acc-icons"></span>How Can I link up with potential investors?
+                                            </a>
+                                        </h4>
+                                    </div>
+                                    <div id="check2" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                            <p>
+                                                Sign Up on our website as an idea owner. Follow the steps and fill in your details then launch your idea. Once an investor shows interest in your idea, he/she will contact you using your contact details.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- End Panel Default -->
+                                <!-- Panel Default -->
+                                <div class="panel panel-default wow fadeInUp" data-wow-delay="700ms">
+                                    <div class="panel-heading">
+                                        <h4 class="check-title">
+                                            <a data-toggle="collapse" data-parent="#accordion" href="#check3">
+                                                <span class="acc-icons"></span>How will secure my Idea
+                                            </a>
+                                        </h4>
+                                    </div>
+                                    <div id="check3" class="panel-collapse collapse ">
+                                        <div class="panel-body">
+                                            <p>
+                                                You own your idea, it is your duty to secure it. Idea Market is not liable for any inconviniences after connecting you to the investor, Make sure you sign a contract and agree on the important issues. We advise you to take expected measures before engaging into business.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- End Panel Default -->
+                                <!-- Panel Default -->
+                                <div class="panel panel-default wow fadeInUp" data-wow-delay="1000ms">
+                                    <div class="panel-heading">
+                                        <h4 class="check-title">
+                                            <a data-toggle="collapse" data-parent="#accordion" href="#check4">
+                                                <span class="acc-icons"></span>How do I stay updated on what's happening in the business world?
+                                            </a>
+                                        </h4>
+                                    </div>
+                                    <div id="check4" class="panel-collapse collapse ">
+                                        <div class="panel-body">
+                                            <p>
+                                                Join our whatsapp groups for daily business news, articles, quotes and tips.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- End Panel Default -->
+
+                            </div>
+                        </div>
+                        <!-- End FAQ -->
+                    </div>
+                </div>
+            </div>
+            <!-- End Column -->
+            <div class="col-md-5 col-sm-6 col-xs-12 wow fadeInUpBig">
+                <div class="faq-content">
+                    <h4>Have any question?</h4>
+                    <div class="faq-quote">
+                        <div class="row">
+                            <form  method="POST" class="contact-form">
+                                <div class="col-md-12 col-sm-12 col-xs-12">                                  
+                                    <div class="help-block with-errors"></div>
+                                    <input asp-for="mails.From" type="email" class="email form-control" placeholder="Your Email" required data-error="Please enter your email">
+                                    <div class="help-block with-errors"></div>
+                                    <input asp-for="mails.Subject" type="text" class="form-control" placeholder="Subject" required="" data-error="Please enter your message subject">
+                                    <div class="help-block with-errors"></div>
+                                </div>
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <textarea asp-for="mails.Body" rows="3" placeholder="Massage" class="form-control" required data-error="Write your message"></textarea>
+                                    <div class="help-block with-errors"></div>
+                                    <button type="submit" id="submit" class="quote-btn">Submit</button>                             
+                                   
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Column -->
+        </div>
+    </div>
+</div>
+<!-- End FAQ area -->

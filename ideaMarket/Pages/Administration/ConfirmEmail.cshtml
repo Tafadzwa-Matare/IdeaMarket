@@ -1,0 +1,66 @@
+﻿@page
+@model ideaMarket.Pages.Administration.ConfirmEmailModel
+@{
+    ViewData["Title"] = "ConfirnEmail";
+    var EmailConfirmNo = 35;
+}
+
+    <div class="page-area-confirmed-email">
+        <div class="breadcumb-overlay"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="breadcrumb text-center">
+                        <div class="section-headline white-headline">
+                            <h3>Email Confirmation</h3>
+                        </div>
+                        <ul class="breadcrumb-bg">
+                            <li class="home-bread">Home</li>
+                            <li>Email Confirmed</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="payment-history-area bg-color fix area-padding-2">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="section-headline text-center">
+
+                        @*<h3 style="color: #E6922E;">@Model.Idea.IdeaName</h3>*@
+
+                    </div>
+                </div>
+            </div>                
+
+            <!-- Idea Plan -->
+            <div class="row">
+                <div class="contact-inner">
+                    <div class="col-md-1">
+
+                    </div>
+                    <!-- Start contact icon column -->
+                    <div class="col-md-10">
+                        <div class="contact-icon text-center">
+                            <div class="single-icon">
+                                <i class="flaticon-003-approve"></i>
+                                <p>
+                                    <h4>Thank You For Confirming Your Email</h4>
+                                    <br>
+                                    <a asp-route-confirmEmail="@EmailConfirmNo" asp-page="/UserPortfolio/PortfolioProfile" class="s-menu"><span><u>Click To Sign In</u></span></a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-1">
+
+                    </div>
+
+                </div>
+            </div>                
+                     
+        </div>
+    </div>

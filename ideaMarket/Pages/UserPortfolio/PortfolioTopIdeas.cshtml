@@ -1,0 +1,149 @@
+﻿@page
+@model ideaMarket.Pages.Platform.PortfolioTopIdeasModel
+@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+
+<div class="page-area-topIdeas">
+    <div class="breadcumb-overlay"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="breadcrumb text-center">
+                    <div class="section-headline white-headline">
+                        <h3>Top IDEAS</h3>
+                    </div>
+                    <ul class="breadcrumb-bg">
+                        <li class="home-bread">Home</li>
+                        <li>Top Ideas</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="blog-area fix page-padding">
+    <div class="container">
+        <div class="row">
+            <div class="blog-sidebar-right">
+
+                <!-- Start Right Sidebar blog -->
+                <div class="col-md-3 col-sm-3 col-xs-12">
+                    <div class="left-head-blog right-side">
+                        <div class="left-blog-page">
+                            <div class="left-tags blog-tags">
+                                <div class="popular-tag left-side-tags left-blog">
+                                    <h4>
+                                        Post New Idea
+                                    </h4><br />
+                                    <form action="#">
+                                        <div class="">
+                                            <a asp-page="/UserPortfolio/portfolioNewIdea" class="newIdea-btn"><i class="ti-light-bulb"></i> Launch idea</a>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="left-blog-page">
+                            <div class="left-blog blog-category">
+                                <h4>Portfolio Menu</h4>
+                                <ul>
+                                    <li><span><i class="fa fa-user"></i></span><a asp-page="/UserPortfolio/PortfolioProfile">Profile</a></li>
+                                    @if (SignInManager.IsSignedIn(User) && User.IsInRole("Idea-Owner"))
+                                    {
+                                        <li><span><i class="fa fa-lightbulb-o"></i></span><a asp-page="/UserPortfolio/myIdeas">My Ideas</a></li>
+                                    }
+
+                                    @if (SignInManager.IsSignedIn(User) && User.IsInRole("Investor"))
+                                    {
+                                        <li><span><i class="fa fa-briefcase"></i></span><a asp-page="/UserPortfolio/myInvestments">My Investments</a></li>
+                                    }
+
+                                    @if (SignInManager.IsSignedIn(User) && User.IsInRole("Administrator"))
+                                    {
+                                        <li><span><i class="fa fa-user"></i></span><a asp-page="/UserPortfolio/Administration">Admin HuB</a></li>
+                                    }
+
+                                </ul>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+
+                <div class="col-md-9 col-sm-9 col-xs-12">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div class="single-blog ">
+
+
+                            @foreach (var item in Model.Ideas)
+                            {
+                                <!-- Start single block -->
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <div class="single-blog">
+                                        <div class="blog-image">
+
+                                            <a class="image-scale" asp-route-IdeaId="@item.IdeaId" asp-page="IdeaProfile">
+                                                <img style="height:300px" width="100%" src="../IdeaPictures/@item.IdeaPicture" alt="">
+                                            </a>
+                                        </div>
+                                        <div class="idea-container">
+
+                                            <a asp-route-IdeaId="@item.IdeaId" asp-page="IdeaProfile">
+                                                <h4>@item.IdeaName</h4>
+                                            </a>
+                                            <div class="blog-meta">
+                                                <span style="color: #E6922E;">
+                                                    @item.IdeaCriteria
+                                                </span>
+                                            </div>
+                                            <div>
+                                                <p>
+                                                    @item.IdeaSummary
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="idea-container-footer">
+                                            <div class="committed-amount">
+                                                <label class="tombstone-footer-text">
+                                                    Funding Target:
+                                                </label>
+                                                <text style="color: #E6922E;">$@item.MinimumCapital</text>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- End single block -->
+                            }
+
+
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <div class="blog-pagination">
+                                    <ul class="pagination">
+                                        <li><a href="#">Prev</a></li>
+                                        <li class="active"><a href="#">1</a></li>
+                                        <li><a href="#">2</a></li>
+                                        <li><a href="#">3</a></li>
+                                        <li><a href="#">Next</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+
+
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Right Sidebar -->
+        </div>
+        <!-- End row -->
+    </div>
+</div>

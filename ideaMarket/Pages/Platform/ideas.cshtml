@@ -1,0 +1,284 @@
+﻿@page
+@model ideaMarket.Pages.Platform.ideasModel
+@{
+    ViewData["Title"] = "ideas";
+}
+
+@section Scripts{
+    <script>
+        function noSession() {
+            Swal.fire(
+                'Not Signed In',
+                'Kindly Login To Explore Ideas',
+                'info'
+            )
+        }
+    </script>
+
+    @*Dynamic Dropdown*@
+    <script>
+
+        var sectorsByCategory = {
+            Primary: ["Agriculture", "Mining", "Fishing", "Forestry"],
+            Secondary: ["Manufacturing", "Utilities", "Construction"],
+            Tertiary: ["Retail", "Finacial Services", "Communication", "Hospitality & Leisure", "Real Estate"],
+            Quaternary: ["Education", "Public Sector", "Research & Develoment"]
+        }
+
+        function changecat(value) {
+            if (value.length == 0) document.getElementById("category").innerHTML = "<option></option>";
+            else {
+                var catOptions = "";
+                for (categoryId in sectorsByCategory[value]) {
+                    catOptions += "<option>" + sectorsByCategory[value][categoryId] + "</option>";
+                }
+                document.getElementById("category").innerHTML = catOptions;
+            }
+        }
+    </script>
+
+    <script>
+        var items = $('.single-blog');
+        var numItems = items.length;
+        var perPage = 3;
+
+        items.slice(perPage).hide();
+
+        $('#pagination-container').pagination({
+            items: numItems,
+            itemsOnPage: perPage,
+            prevText: "<",
+            nextText: ">",
+            onPageClick: function (pageNumber) {
+                var showFrom = perPage * (pageNumber - 1);
+                var showTo = showFrom + perPage;
+                items.hide().slice(showFrom, showTo).show();
+            }
+        })
+    </script>
+    @*<script>
+            $(document).ready(function () {
+                $('#search').on('keyup', function () {
+
+                    var datasearch = $(this).val().toLowerCase();
+                    $('#ideaCards div').each(function () {
+
+                        var stringdata = $(this).text().toLowerCase();
+                        if (stringdata.indexOf(datasearch) === -1) {
+
+                           $(this).hide();
+                        }
+                        else {
+
+                            $(this).show();
+                        }
+                    })
+                });
+            });
+        </script>*@
+
+    @*<script>
+            $('#search').keyup(function () {
+                $('.single-blog').removeClass('d-none');
+                var filter = $(this).val(); // get the value of the input, which we filter on
+                $('#ideaCards').find(' .single-blog .idea-container a h4:not(:contains("' + filter + '"))').parent().parent().addClass('d-none');
+            })
+
+        </script>*@
+}
+
+<!-- Start breadcumb Area -->
+<div class="page-area-ideas">
+    <div class="breadcumb-overlay"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="breadcrumb text-center">
+                    <div class="section-headline white-headline">
+                        <h3>Ideas</h3>
+                    </div>
+                    <ul class="breadcrumb-bg">
+                        <li class="home-bread">Home</li>
+                        <li>Ideas</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End breadcumb Area -->
+<!-- Start Blog Area-->
+<div class="blog-area fix bg-color page-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="section-headline text-center">
+                    <h3>Investment Ideas</h3>
+                    <p>Invest In Potential Startups and Businesses</p>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row filter-section">
+            <h5 class="text-center">Filter And Search Section</h5>
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="col-md-5 col-sm-5 col-xs-12">
+                    <label for="sectors">Filter By Sector</label>
+                    <form asp-page="./ideas" method="get" class="form-inline">
+
+                        <div class="form-group blog-search-option" style="padding-left: 0;">
+
+                            <select id="sectors" onChange="changecat(this.value);" class="form-control">
+                                <option value="" disabled selected>Sector</option>
+                                <option value="Primary">Primary</option>
+                                <option value="Secondary">Secondary</option>
+                                <option value="Tertiary">Tertiary</option>
+                                <option value="Quaternary">Quaternary</option>
+                            </select>
+                        </div>
+
+
+                        <div class=" form-group blog-search-option" style="font-size: small">
+                            <select id="category" name="SearchString" style="height:34px; width:175px" value="@Model.CurrentFilter">
+                                <option value="" disabled selected>Select</option>
+                            </select>
+                            <button class="button" value="search" type="submit">
+                                <i class="fa fa-search"></i>
+                            </button>
+                        </div>
+
+
+                    </form>
+                </div>
+                <div class="col-md-4 col-sm-4 col-xs-12">
+                    <label for="sectors">Filter By Capital</label>
+                    <form asp-page="./ideas" method="get" class="form-inline">
+                        <div class="form-group blog-search-option" style="font-size: small">
+                            <select id="category" name="CapitalSearch" style="height:34px; width:175px;" value="@Model.CapitalFilter">
+                                <option value="" disabled selected>Capital</option>
+                                <option value="A">Below $100</option>
+                                <option value="B">$100 - $500</option>
+                                <option value="C">$500 - $1000</option>
+                                <option value="D">$1000 - $5000</option>
+                                <option value="E">Above $5000</option>
+                            </select>
+                            <button class="button" value="search" type="submit">
+                                <i class="fa fa-search"></i>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-md-3 col-sm-3 col-xs-12">
+                    <label for="sectors">Search</label>
+                    <form asp-page="./ideas" method="get" class="form-inline ">
+                        <div class="form-group blog-search-option" style="font-size: small">
+
+                            <input type="text" name="SearchString" style = "width:175px;" value="@Model.CurrentFilter" id="search" placeholder="Type Idea Name..">
+                            <button class="button" value="search" type="submit">
+                                <i class="fa fa-search"></i>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="blog-grid home-blog" id="ideaCards">
+                @foreach (var item in Model.Ideas)
+                {
+
+                    <!-- Start single block -->
+                    <div class="col-md-4 col-sm-6 col-xs-12 wow fadeInUp" id="Ideaboxes" data-wow-delay="200ms">
+                        <div class="single-blog">
+                            <div class="blog-image">
+                                @if (SignInManager.IsSignedIn(User))
+                                {
+                                    @if (item.IdeaPicture == null)
+                                    {
+                                        <a class="image-scale" asp-route-IdeaId="@item.IdeaId" asp-page="IdeaProfile">
+                                            <img style="height:300px" width="100%" src="../IdeaPicture/ideaDefaultPic.jpg" alt="">
+                                        </a>
+                                    }
+                                    else if (item.IdeaPicture != null)
+                                    {
+                                        <a class="image-scale" asp-route-IdeaId="@item.IdeaId" asp-page="IdeaProfile">
+                                            <img style="height:300px" width="100%" src="../IdeaPictures/@item.IdeaPicture" alt="">
+                                        </a>
+                                    }
+
+
+                                }
+                                else
+                                {
+                                    @if (item.IdeaPicture == null)
+                                    {
+                                        <a class="image-scale" href="#" onclick="noSession()">
+                                            <img style="height:300px" width="100%" src="../IdeaPicture/ideaDefaultPic.jpg" alt="">
+                                        </a>
+                                    }
+                                    else if (item.IdeaPicture != null)
+                                    {
+                                        <a class="image-scale" href="#" onclick="noSession()">
+                                            <img style="height:300px" width="100%" src="../IdeaPictures/@item.IdeaPicture" alt="">
+                                        </a>
+                                    }
+                                }
+
+                            </div>
+                            <div class="idea-container">
+
+                                @if (SignInManager.IsSignedIn(User))
+                                {
+                                    <a asp-route-IdeaId="@item.IdeaId" asp-page="IdeaProfile">
+                                        <h4>@item.IdeaName</h4>
+                                    </a>
+                                }
+                                else
+                                {
+                                    <a class="image-scale" href="#" onclick="noSession()">
+                                        <h4>@item.IdeaName</h4>
+                                    </a>
+                                }
+
+                                <div class="blog-meta">
+                                    <span style="color: #E6922E;">
+                                        @item.IdeaCriteria
+                                    </span>
+                                </div>
+                                <div>
+                                    <p>
+                                        @item.IdeaSummary
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="idea-container-footer">
+                                <div class="committed-amount">
+                                    <label class="tombstone-footer-text">
+                                        Funding Target:
+                                    </label>
+                                    <text style="color: #E6922E;">$@item.MinimumCapital</text>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End single block -->
+                }
+
+
+            </div>
+        </div>
+        <!-- End row -->
+
+        <div id="pagination-container">
+
+        </div>
+    </div>
+</div>
+<!-- End Blog Area-->
